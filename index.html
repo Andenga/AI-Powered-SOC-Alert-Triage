@@ -4,36 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>On-Screen Keyboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        #text-entry {
-            width: 100%;
-            font-size: 20px;
-            padding: 10px;
-            box-sizing: border-box;            
-        }
-        .keyboard {
-            display: grid;
-            grid-template-columns: repeat(10, 1fr);
-            gap: 2px;
-            margin: 10px;
-        }
-        .key {
-            width: 50px;
-            height: 50px;
-            text-align: center;
-            line-height: 50px;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1>Onscreen Keyboard</h1>
+    <p>Please use the Onscreen keyboard below to input text </p>
     <input type="text" id="text-entry" readonly>
     <div class="keyboard">
         <div class="key" onclick="appendToEntry('1')">1</div>
