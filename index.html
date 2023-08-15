@@ -3,15 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Keyboard </title>
-    <link rel="stylesheet" href="style.css">
+    <title>On-Screen Keyboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #text-entry {
+            width: 100%;
+            font-size: 20px;
+            padding: 10px;
+            box-sizing: border-box;            
+        }
+        .keyboard {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 2px;
+            margin: 10px;
+        }
+        .key {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    
-    
-    <h1>Virtual Keyboard </h1>
+    <input type="text" id="text-entry" readonly>
+    <div class="keyboard">
+        <div class="key" onclick="appendToEntry('1')">1</div>
+        <div class="key" onclick="appendToEntry('2')">2</div>
+        <div class="key" onclick="appendToEntry('3')">3</div>
+        <div class="key" onclick="appendToEntry('4')">4</div>
+        <div class="key" onclick="appendToEntry('5')">5</div>
+        <div class="key" onclick="appendToEntry('6')">6</div>
+        <div class="key" onclick="appendToEntry('7')">7</div>
+        <div class="key" onclick="appendToEntry('8')">8</div>
+        <div class="key" onclick="appendToEntry('9')">9</div>
+        <div class="key" onclick="appendToEntry('0')">0</div>
+        <div class="key" onclick="appendToEntry('Q')">Q</div>
+        <div class="key" onclick="appendToEntry('W')">W</div>
+        <div class="key" onclick="appendToEntry('E')">E</div>
+        <div class="key" onclick="appendToEntry('R')">R</div>
+        <div class="key" onclick="appendToEntry('T')">T</div>
+        <div class="key" onclick="appendToEntry('Y')">Y</div>
+        <div class="key" onclick="appendToEntry('U')">U</div>
+        <div class="key" onclick="appendToEntry('I')">I</div>
+        <div class="key" onclick="appendToEntry('O')">O</div>
+        <div class="key" onclick="appendToEntry('P')">P</div>
+        <div class="key" onclick="appendToEntry('A')">A</div>
+        <div class="key" onclick="appendToEntry('S')">S</div>
+        <div class="key" onclick="appendToEntry('D')">D</div>
+        <div class="key" onclick="appendToEntry('F')">F</div>
+        <div class="key" onclick="appendToEntry('G')">G</div>
+        <div class="key" onclick="appendToEntry('H')">H</div>
+        <div class="key" onclick="appendToEntry('J')">J</div>
+        <div class="key" onclick="appendToEntry('K')">K</div>
+        <div class="key" onclick="appendToEntry('L')">L</div>
+        <div class="key" onclick="appendToEntry('Z')">Z</div>
+        <div class="key" onclick="appendToEntry('X')">X</div>
+        <div class="key" onclick="appendToEntry('C')">C</div>
+        <div class="key" onclick="appendToEntry('V')">V</div>
+        <div class="key" onclick="appendToEntry('B')">B</div>
+        <div class="key" onclick="appendToEntry('N')">N</div>
+        <div class="key" onclick="appendToEntry('M')">M</div>
+        <div class="key" onclick="appendToEntry(' ')">Space</div>
+        <div class="key" onclick="clearEntry()">Clear</div>
+    </div>
 
+    <script>
+        function appendToEntry(char) {
+            const textEntry = document.getElementById("text-entry");
+            textEntry.value += char;
+        }
 
-    <script src="main.js"></script>
+        function clearEntry() {
+            const textEntry = document.getElementById("text-entry");
+            textEntry.value = "";
+        }
+    </script>
 </body>
 </html>
