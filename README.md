@@ -1,3 +1,12 @@
+The beginner version is an LLM wrapper around GuardDuty alerts that looks impressive in a demo GIF. What signals real judgment is showing where the model triaged wrong — false negatives on a real attack pattern, or over-triaging benign noise — and how you designed guardrails or human-in-the-loop checks around that. Recruiters and hiring managers in security specifically distrust "AI did the work" claims; showing you understand the model's failure modes is what proves you're not naive about AI in a security context.
+
+
+
+
+
+
+
+
 # On-Screen Keyboard
 
 ![Screenshot](https://private-user-images.githubusercontent.com/62437418/260807949-2cfaaeaf-3a1f-47cb-8dc5-aaac57d4bc81.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE2OTIxMjU1MzEsIm5iZiI6MTY5MjEyNTIzMSwicGF0aCI6Ii82MjQzNzQxOC8yNjA4MDc5NDktMmNmYWFlYWYtM2ExZi00N2NiLThkYzUtYWFhYzU3ZDRiYzgxLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzA4MTUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMwODE1VDE4NDcxMVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTVjYjVjY2ViZDc3OGFmOWQ0OTkzMjhmOTMzMDU3MWY4ODM0Njk2NmMyYjhlYzg4YjhkMWVjYzM1ZTMwMmVlZWMmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.ZI6RZAhHzqkGU-chQRGLwSWLv9OQdVedIDJG6_XypQk)
