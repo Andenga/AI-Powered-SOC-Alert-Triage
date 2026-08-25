@@ -1,49 +1,66 @@
-The beginner version is an LLM wrapper around GuardDuty alerts that looks impressive in a demo GIF. What signals real judgment is showing where the model triaged wrong — false negatives on a real attack pattern, or over-triaging benign noise — and how you designed guardrails or human-in-the-loop checks around that. Recruiters and hiring managers in security specifically distrust "AI did the work" claims; showing you understand the model's failure modes is what proves you're not naive about AI in a security context.
+# Alert Triage Eval
 
+An AI-assisted SOC alert triage tool — with an honest, documented account of where it fails and why, not just where it works.
 
+## Why this exists
 
+Most "AI for security" portfolio projects show the happy path: the model classified the alerts, the demo works, done. That's not how AI-assisted tools behave in a real SOC, and pretending otherwise is a red flag to anyone who's actually worked in one. This project treats the *failure analysis* as the main deliverable, not an afterthought — because knowing where an automated system breaks is what determines whether an analyst can trust it.
 
+## What it does
 
+- Ingests a set of security alerts (SIEM/EDR-style: source, severity, MITRE ATT&CK mapping, raw log context)
+- Uses an LLM/ML model to triage each alert: prioritize, classify as likely true/false positive, and generate a suggested next action
+- Compares model output against ground-truth labels
+- Produces a **failure analysis report**: false positives, false negatives, and the patterns behind each
 
+## Dataset
 
+*(Fill in what you actually used, e.g.)*
+Alerts modeled on [dataset name / source], structured to resemble realistic SIEM/EDR alert schemas with fields for severity, source, MITRE ATT&CK technique, and analyst-labeled ground truth (true positive / false positive / needs investigation).
 
-# On-Screen Keyboard
+## Triage pipeline
 
-![Screenshot](https://private-user-images.githubusercontent.com/62437418/260807949-2cfaaeaf-3a1f-47cb-8dc5-aaac57d4bc81.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE2OTIxMjU1MzEsIm5iZiI6MTY5MjEyNTIzMSwicGF0aCI6Ii82MjQzNzQxOC8yNjA4MDc5NDktMmNmYWFlYWYtM2ExZi00N2NiLThkYzUtYWFhYzU3ZDRiYzgxLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFJV05KWUFYNENTVkVINTNBJTJGMjAyMzA4MTUlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjMwODE1VDE4NDcxMVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTVjYjVjY2ViZDc3OGFmOWQ0OTkzMjhmOTMzMDU3MWY4ODM0Njk2NmMyYjhlYzg4YjhkMWVjYzM1ZTMwMmVlZWMmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.ZI6RZAhHzqkGU-chQRGLwSWLv9OQdVedIDJG6_XypQk)
+```
+alerts/           # Raw + labeled alert data
+triage/           # Model inference: prioritization + classification
+eval/             # Scoring against ground truth (precision, recall, confusion matrix)
+failure-analysis/ # Documented breakdown of where and why triage failed
+```
 
-The On-Screen Keyboard is a user-friendly graphical interface that provides an on-screen keyboard for text input. It allows users to type text without the need for a physical keyboard, making it useful for scenarios where a physical keyboard may not be available or practical.
+## Sample failure analysis
 
+| Alert pattern | Model prediction | Ground truth | Why it failed |
+|---|---|---|---|
+| Multiple failed logins, off-hours, VPN source | Low priority | True positive (credential stuffing) | Model underweighted time-of-day as a signal |
+| Single PowerShell execution, signed binary | High priority | False positive (scheduled admin task) | Model over-indexed on "PowerShell" keyword without execution context |
 
-## Features
+*(Replace with your actual results — this table is the core value of the project.)*
 
-- Responsive and visually appealing on-screen keyboard layout.
-- Buttons for alphanumeric characters, space, and a clear button for erasing text.
-- Seamless integration of HTML and CSS GUI with Python application.
-- Allows users to interact with the virtual keyboard and input text into a designated text entry field.
+## Metrics
 
+- Precision / recall / F1 on triage classification
+- False negative rate on high-severity ground-truth alerts (the metric that matters most operationally — a missed true positive is far more costly than a false alarm)
+- Breakdown of failure modes by alert type
 
-## Prerequisites
+## Getting started
 
-- Python 3.x
-- `pandas library` library
-- `tkinterhtml` library (`pip install tkinterhtml`)
-- `tkinter` library
+```bash
+git clone https://github.com/<your-username>/alert-triage-eval.git
+cd alert-triage-eval
+pip install -r requirements.txt
+python triage.py --input alerts/sample_alerts.json
+python evaluate.py --predictions output/predictions.json --labels alerts/ground_truth.json
+```
 
+## What I'd add next
 
-## Future Improvements :)
+- Human-in-the-loop feedback loop to retrain/tune on analyst corrections
+- Confidence scoring so low-confidence triage decisions are flagged for manual review instead of auto-actioned
 
-This project provides a basic on-screen keyboard with essential features. Future enhancements could include:
+## Limitations
 
-- Support for special characters and symbols. 
-- Caps lock and shift functionality.
-- Improved styling and theming options.
-- Customizable keyboard layouts.
+This is an evaluation of an AI-assisted triage *approach*, not a production-ready SOC tool. Results are specific to the dataset used and should not be read as a general claim about model performance on live alert streams.
 
+## License
 
-## Acknowledgements
-
-This project was inspired by the need for versatile and user-friendly text input methods, bridging the gap between Python and web technologies.
-
-## Contributors
-
-- Lydia Andenga
+MIT
